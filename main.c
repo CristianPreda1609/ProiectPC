@@ -218,7 +218,7 @@ void adaugareElev(int *n,catalog *v)
     printf("\nIntroduceti data de nastere cu spatiu intre argumente ca in exemplul urmator (11 12 2003) :");
     scanf("%d %d %d", &v[i].zi , &v[i].luna , &v[i].an);
     printf("\nIntroduceti cnp-ul:");
-    scanf("%" SCNi64,&cnp1);
+    scanf("%" SCNu64,&cnp1);
     int j;
     for(j=12;j>=0;j--)
         {
@@ -238,7 +238,7 @@ void citire(catalog *v, int *i)
     for(*i=0;*i<n;++*i)
     {
         unsigned long long int cnp1;
-        fscanf(g, "%d %60s %1s %d %d %d %" SCNi64, &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
+        fscanf(g, "%d %60s %1s %d %d %d %" SCNu64, &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
         int j;
         for(j=12;j>=0;j--)
         {
