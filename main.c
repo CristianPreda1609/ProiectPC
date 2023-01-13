@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #define MAX 31
 #define MAX1 61
 #define MAX2 2
@@ -131,16 +132,14 @@ int cautare_elev(char* nume_si_prenume,catalog *v, int n)
 
         int obs= 0;
         unsigned long long int c=cnp1;
-        int c1;
         for(;*i<n && obs == 0;++*i)
         {
-            c1=c%10;
                 int j;
                 obs=1;
                 j=3;
             while(j>=0 && obs == 1)
             {
-                if(v[*i].cnp[j] == c1 )
+                if(v[*i].cnp[j] == (int)(c%10) )
                 {
                     c/=10;
                     --j;
@@ -219,7 +218,7 @@ void adaugareElev(int *n,catalog *v)
     printf("\nIntroduceti data de nastere cu spatiu intre argumente ca in exemplul urmator (11 12 2003) :");
     scanf("%d %d %d", &v[i].zi , &v[i].luna , &v[i].an);
     printf("\nIntroduceti cnp-ul:");
-    scanf("%" SCN64u,&cnp1);
+    scanf("%" SCNi64,&cnp1);
     int j;
     for(j=12;j>=0;j--)
         {
@@ -239,7 +238,7 @@ void citire(catalog *v, int *i)
     for(*i=0;*i<n;++*i)
     {
         unsigned long long int cnp1;
-        fscanf(g, "%d %60s %1s %d %d %d %" SCN64u, &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
+        fscanf(g, "%d %60s %1s %d %d %d %" SCNi64, &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
         int j;
         for(j=12;j>=0;j--)
         {
@@ -454,6 +453,7 @@ void afisare_elev(int n, catalog *v)
     printf("|| %d || %s || %s || %d.%d.%d ||\n", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
 }
 
+int calc_medie();
  //-----------------------------FUNCTIA MAIN-----------------------------//
 int main()
 {
