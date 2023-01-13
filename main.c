@@ -1,7 +1,8 @@
+#include <rlutil.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "rlutil.h"
 #define MAX 31
 #define MAX1 61
 #define MAX2 2
@@ -130,14 +131,16 @@ int cautare_elev(char* nume_si_prenume,catalog *v, int n)
 
         int obs= 0;
         unsigned long long int c=cnp1;
+        int c1;
         for(;*i<n && obs == 0;++*i)
         {
+            c1=c%10;
                 int j;
                 obs=1;
                 j=3;
             while(j>=0 && obs == 1)
             {
-                if(v[*i].cnp[j] == (c%10) )
+                if(v[*i].cnp[j] == c1 )
                 {
                     c/=10;
                     --j;
@@ -216,7 +219,7 @@ void adaugareElev(int *n,catalog *v)
     printf("\nIntroduceti data de nastere cu spatiu intre argumente ca in exemplul urmator (11 12 2003) :");
     scanf("%d %d %d", &v[i].zi , &v[i].luna , &v[i].an);
     printf("\nIntroduceti cnp-ul:");
-    scanf("%I64u",&cnp1);
+    scanf("%" SCN64u,&cnp1);
     int j;
     for(j=12;j>=0;j--)
         {
@@ -236,7 +239,7 @@ void citire(catalog *v, int *i)
     for(*i=0;*i<n;++*i)
     {
         unsigned long long int cnp1;
-        fscanf(g, "%d %60s %1s %d %d %d %I64u", &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
+        fscanf(g, "%d %60s %1s %d %d %d %" SCN64u, &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
         int j;
         for(j=12;j>=0;j--)
         {
@@ -246,7 +249,6 @@ void citire(catalog *v, int *i)
 
             fscanf(g,"%d", &v[*i].nmate[0]);
             int obs = v[*i].nmate[0];
-            printf("%d", obs);
             j=1;
             for(; obs ; --obs, ++j)
             {
@@ -449,7 +451,7 @@ void afisare_elev(int n, catalog *v)
 {
     int i;
     for(i=0; i<n; ++i)
-    printf("|| %d || %s || %s || %d || %d || %d ||\n", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
+    printf("|| %d || %s || %s || %d.%d.%d ||\n", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
 }
 
  //-----------------------------FUNCTIA MAIN-----------------------------//
@@ -493,7 +495,7 @@ int main()
         }
 
         printf("|| Varsta || Nume si Prenume || Sex || Data Nasterii || CNP ||\n");
-        printf("|| %d || %s || %s || %d || %d || %d || ", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
+        printf("|| %d || %s || %s || %d.%d.%d || ", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
          for(j=0;j<13;j++)
         {
             printf( "%d", v[i].cnp[j]);
