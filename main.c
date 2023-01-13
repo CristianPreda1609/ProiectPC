@@ -1,5 +1,5 @@
 #include <rlutil.h>
-#include <inttypes.h>
+#include <ctypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
