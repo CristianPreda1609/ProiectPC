@@ -409,7 +409,7 @@ void stergere_copil( int i, int *n,catalog *v)
 void adaugareElev(int *n,catalog *v)
 {
     int i=*n;
-    unsigned long long int cnp1;
+    uint64_t cnp1;
     printf("Introduceti varsta :");
     scanf("%d", &v[i].varsta);
 
@@ -441,7 +441,7 @@ void citire(catalog *v, int *i)
     fscanf(f,"%d", &n);
     for(*i=0;*i<n;++*i)
     {
-        unsigned long long int cnp1;
+        uint64_t cnp1;
         fscanf(g, "%d %60s %1s %d %d %d %" PRIu64, &v[*i].varsta , v[*i].nsp , v[*i].gen , &v[*i].zi , &v[*i].luna , &v[*i].an, &cnp1);
         int j;
         for(j=12;j>=0;j--)
