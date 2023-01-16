@@ -38,9 +38,9 @@ void scriere_admin(int n, user *v)
     for(i=0;i<n;i++)
     {
         int j;
-        for(j=0;j<strlen(v[i].nume);j++)
+        for(j=0;(unsigned int)j<strlen(v[i].nume);j++)
         v[i].nume[j]-=3;
-        for(j=0;j<strlen(v[i].parola);j++)
+        for(j=0;(unsigned int)j<strlen(v[i].parola);j++)
         v[i].parola[j]-=3;
     }
     for(i=0;i<n;i++)
@@ -79,9 +79,9 @@ int logare()
         for(i=0;i<n;i++)
         {
             int j;
-            for(j=0;j<strlen(v[i].nume);j++)
+            for(j=0;(unsigned int)j<strlen(v[i].nume);j++)
             v[i].nume[j]+=3;
-            for(j=0;j<strlen(v[i].parola);j++)
+            for(j=0;(unsigned int)j<strlen(v[i].parola);j++)
             v[i].parola[j]+=3;
         }
         printf("Introduceti numele (maxim 10 caractere) : ");
@@ -153,9 +153,9 @@ int logare()
                         scriere_admin(n,v);
                          for(i=0;i<n;i++)
                         {
-                            for(j=0;j<strlen(v[i].nume);j++)
+                            for(j=0;(unsigned int)j<strlen(v[i].nume);j++)
                             v[i].nume[j]+=3;
-                            for(j=0;j<strlen(v[i].parola);j++)
+                            for(j=0;(unsigned int)j<strlen(v[i].parola);j++)
                             v[i].parola[j]+=3;
                         }
                         cls();
