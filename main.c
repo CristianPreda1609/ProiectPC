@@ -869,6 +869,7 @@ int main()
             printf( "%d", v[i].cnp[j]);
         }
         puts(" ||");
+        free(v);
 
         break;
 
