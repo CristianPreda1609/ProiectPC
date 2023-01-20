@@ -182,12 +182,10 @@ int logare()
 }
 
 
-enum Corigente
+typedef struct corigent
 {
-    una=1,
-
-    doua=2,
-};
+    int situatie :2;
+} corigente;
 
 typedef struct catalog
 {
@@ -250,6 +248,7 @@ int cautare_elev(char* nume_si_prenume,catalog *v, int n)
  //-----------------------------FUNCTIA DE SCRIERE IN FISIER-------------------------------//
 void scriere(catalog * v, int n)
 {
+    corigente alpha;
     FILE* g = fopen("FileIn.txt", "w");
     FILE* f = fopen("NrDate.txt", "w");
     for(int i = 0; i< n ; i++)
@@ -635,9 +634,145 @@ int sortare_nume(const void * a, const void * b)
 //-----------------------------FUNCTIA DE AFISARE DATE ELEV-----------------------------//
 void afisare_elev(int n, catalog *v)
 {
+    corigente * alpha = malloc(n * sizeof(corigente));
+
     int i;
     for(i=0; i<n; ++i)
-    printf("|| %d || %s || %s || %d.%d.%d ||\n", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
+    {printf("|| %d || %s || %s || %d.%d.%d ||", v[i].varsta , v[i].nsp , v[i].gen , v[i].zi , v[i].luna , v[i].an);
+            int obs = v[i].nmate[0];
+            int j=1;
+            if(obs >0)
+            printf("Note Mate:");
+            for(; obs ; --obs, ++j)
+            {
+                printf(" %d ", v[i].nmate[j]);
+            }
+            obs = v[i].nfizica[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note fizica:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nfizica[j]);
+            }
+            obs = v[i].nchimie[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note chimie:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nchimie[j]);
+            }
+            obs = v[i].ninfo[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note info:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].ninfo[j]);
+            }
+            obs = v[i].ntic[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note tic:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].ntic[j]);
+            }
+            obs = v[i].nbio[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note bio:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nbio[j]);
+            }
+            obs = v[i].neng[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note engleza:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].neng[j]);
+            }
+            obs = v[i].nfr[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note franceza:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nfr[j]);
+            }
+            obs = v[i].nsport[0];
+            if(obs >0)
+                printf("||Note sport:");
+
+            j=1;
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nsport[j]);
+            }
+            obs = v[i].nromana[0];
+            j=1;
+            if(obs >0)
+                        printf("||Note romana:");
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nromana[j]);
+            }
+            obs = v[i].nmuzica[0];
+            if(obs >0)
+                        printf("||Note muzica:");
+            j=1;
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].nmuzica[j]);
+            }
+            obs = v[i].ndesen[0];
+            if(obs >0)
+                        printf("||Note desen:");
+            j=1;
+            for(; obs ; --obs, ++j)
+            {
+                printf("%d ", v[i].ndesen[j]);
+            }
+
+            alpha[i].situatie = 1;
+            for(;alpha[i].situatie > 0;)
+            {
+                if(v[i].mmate<5 && v[i].nmate[0]>0)
+                    alpha[i].situatie =0;
+                if(v[i].mromana<5 && v[i].nromana[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mfizica<5 && v[i].nfizica[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mchimie<5 && v[i].nchimie[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].minfo<5 && v[i].ninfo[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mtic<5 && v[i].ntic[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mbio<5 && v[i].nbio[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].meng<5 && v[i].neng[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mfr<5 && v[i].nfr[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].msport<5 && v[i].nsport[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mmuzica<5 && v[i].nmuzica[0]>0)
+                    alpha[i].situatie =0;
+                    if(v[i].mdesen<5 && v[i].ndesen[0]>0)
+                    alpha[i].situatie =0;
+                    if(alpha[i].situatie == 1)
+                        break;
+
+            }
+            if(alpha[i].situatie == 0)
+                printf("||ELEVUL ESTE CORIGENT LA UNA SAU MAI MULTE MATERII||");
+            printf("\n");
+    }
+    free (alpha);
 }
 //-----------------------------FUNCTIA DE ADAUGARE NOTE-----------------------------//
 void adaugare_mate(int n,catalog *v)
