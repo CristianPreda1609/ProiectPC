@@ -248,7 +248,6 @@ int cautare_elev(char* nume_si_prenume,catalog *v, int n)
  //-----------------------------FUNCTIA DE SCRIERE IN FISIER-------------------------------//
 void scriere(catalog * v, int n)
 {
-    corigente alpha;
     FILE* g = fopen("FileIn.txt", "w");
     FILE* f = fopen("NrDate.txt", "w");
     for(int i = 0; i< n ; i++)
@@ -742,29 +741,29 @@ void afisare_elev(int n, catalog *v)
             {
                 if(v[i].mmate<5 && v[i].nmate[0]>0)
                     alpha[i].situatie =0;
-                if(v[i].mromana<5 && v[i].nromana[0]>0)
+                else if(v[i].mromana<5 && v[i].nromana[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mfizica<5 && v[i].nfizica[0]>0)
+                  else  if(v[i].mfizica<5 && v[i].nfizica[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mchimie<5 && v[i].nchimie[0]>0)
+                  else  if(v[i].mchimie<5 && v[i].nchimie[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].minfo<5 && v[i].ninfo[0]>0)
+                 else   if(v[i].minfo<5 && v[i].ninfo[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mtic<5 && v[i].ntic[0]>0)
+                else    if(v[i].mtic<5 && v[i].ntic[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mbio<5 && v[i].nbio[0]>0)
+               else     if(v[i].mbio<5 && v[i].nbio[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].meng<5 && v[i].neng[0]>0)
+               else     if(v[i].meng<5 && v[i].neng[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mfr<5 && v[i].nfr[0]>0)
+               else     if(v[i].mfr<5 && v[i].nfr[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].msport<5 && v[i].nsport[0]>0)
+               else     if(v[i].msport<5 && v[i].nsport[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mmuzica<5 && v[i].nmuzica[0]>0)
+                else    if(v[i].mmuzica<5 && v[i].nmuzica[0]>0)
                     alpha[i].situatie =0;
-                    if(v[i].mdesen<5 && v[i].ndesen[0]>0)
+               else     if(v[i].mdesen<5 && v[i].ndesen[0]>0)
                     alpha[i].situatie =0;
-                    if(alpha[i].situatie == 1)
+               else     if(alpha[i].situatie == 1)
                         break;
 
             }
